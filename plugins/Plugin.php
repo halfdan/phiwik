@@ -16,12 +16,14 @@ abstract class Piwik_Plugin {
 	protected $piwikUrl;
 	protected $period;
 	protected $format;
+	protected $date;
 
 	public function __construct($piwikUrl = 'http://localhost', $tokenAuth = 'anonymous') {
 		$this->piwikUrl = $piwikUrl;
 		$this->tokenAuth = $tokenAuth;
 		$this->format = 'json';
 		$this->period = 'day';
+		$this->date = 'today';
 	}
 
 	public function setTokenAuth($tokenAuth) {
@@ -34,6 +36,10 @@ abstract class Piwik_Plugin {
 
 	public function setDefaultFormat($format) {
 		$this->format = $format;
+	}
+
+	public function setDefaultDate($date) {
+		$this->date = $date;
 	}
 
 	public function setDefaultPeriod($period) {

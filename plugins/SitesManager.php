@@ -39,16 +39,6 @@ class Piwik_SitesManager extends Piwik_Plugin {
 
 		return $this->sendHttpRequest($params);
 	}
-	
-	public function getSiteUrlsFromId($url, $format = null) {
-		$params = array(
-			"method" => substr(strstr(get_class($this), '_'), 1) . '.' . __FUNCTION__,
-			"format" => is_null($format) ? $this->format : $format,
-			"idSite" => $idSite,
-		);
-
-		return $this->sendHttpRequest($params);
-	}
 
 	public function __call($method, $args) {
 		$methods = array(
@@ -75,6 +65,8 @@ class Piwik_SitesManager extends Piwik_Plugin {
 			);
 
 			return $this->sendHttpRequest($params);
+		} else {
+			throw new Exception("Unknown API call.");
 		}
 	}
 
